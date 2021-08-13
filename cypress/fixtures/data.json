@@ -1,5 +1,10 @@
 {
   "username" : "standard_user",
   "password" : "secret_sauce",
-  "productName" : ["Sauce Labs Onesie","Sauce Labs Fleece Jacket"]
+  "wrongpassword" : "wrongpassword",
+  "wrongusername" : "wrongusername",
+  "productName" : ["Sauce Labs Onesie","Sauce Labs Fleece Jacket","Sauce Labs Bolt T-Shirt","Sauce Labs Backpack"],
+  "firstname" : "John",
+  "lastname" : "Node",
+  "postalcode" : "66-555"
 }
