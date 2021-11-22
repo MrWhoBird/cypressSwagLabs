@@ -1,22 +1,54 @@
 /// <reference types="Cypress" />
-import BasePage from "./BasePage"
+class LoginPage {
 
-
-class LoginPage extends BasePage{
-
-  login(username,password,error){
-
-    const basePage = new BasePage()
-    basePage.visitWebsite()
-
-    cy.get('[data-test=username]').type(username)
-    cy.get('[data-test=password]').type(password)
-    cy.get('[data-test=login-button]').click()
-    error ? 
-    cy.get('[data-test=error]').should('be.visible').and('have.text', "Epic sadface: Username and password do not match any user in this service")
-    : cy.get('.title').should('have.text', 'Products')
-
+  //locators
+  getUsernameField(){
+    return cy.get('[data-test=username]')
   }
+
+  getPasswordField(){
+    return cy.get('[data-test=password]')  
+  }
+
+  getLoginButton(){
+    return cy.get('[data-test=login-button]') 
+  }
+
+  getErrorPlaceholder(){
+    return cy.get('[data-test=error]')
+  }
+
+//*********************************************************************************
+
+  //actions
+  typeUsername(username){
+    this.getUsernameField().type(username)
+  }
+
+  typePassword(password){
+    this.getPasswordField().type(password)  
+  }
+
+  clickLoginButton(){
+    this.getLoginButton().click()  
+  }
+
+  checkInvalidCredentialsPlaceholder(){
+    this.getErrorPlaceholder().should('be.visible').and('have.text', "Epic sadface: Username and password do not match any user in this service")
+  }
+
+  checkLockedCredentialsPlaceholder(){
+    this.getErrorPlaceholder().should('be.visible').and('have.text', "Epic sadface: Sorry, this user has been locked out.")
+  }
+
+  checkEmptyUsernamePlaceholder(){
+    this.getErrorPlaceholder().should('be.visible').and('have.text', "Epic sadface: Username is required")
+  }
+
+  checkEmptyPasswordPlaceholder(){
+    this.getErrorPlaceholder().should('be.visible').and('have.text', "Epic sadface: Password is required")
+  }
+
 }
 
 export default LoginPage

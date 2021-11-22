@@ -1,17 +1,36 @@
 /// <reference types="Cypress" />
-
-
 class CheckoutInformationPage{
 
-  fillInTheCheckoutForm(firstname,lastname,postalcode){
+  //locators
+  getFirstNameInput(){
+    return cy.get('[data-test=firstName]')
+  }
 
-    cy.get('[data-test=checkout]').click()
-    cy.get('[data-test=firstName]').type(firstname)
-    cy.get('[data-test=lastName]').type(lastname)
-    cy.get('[data-test=postalCode]').type(postalcode)
-    cy.get('[data-test=continue]').click()
-    cy.get('[data-test=finish]').click()
-}
+  getLastNameInput(){
+    return cy.get('[data-test=lastName]')
+  }
+
+  getPostalCodeInput(){
+    return cy.get('[data-test=postalCode]')
+  }
+
+  getContinueBtn(){
+    return cy.get('[data-test=continue]')
+  }
+
+//*********************************************************************************
+
+
+  //actions
+  fillInCheckoutForm(firstname,lastname,postalcode){
+    this.getFirstNameInput().type(firstname)
+    this.getLastNameInput().type(lastname)
+    this.getPostalCodeInput().type(postalcode)
+  }
+
+  clickContinueBtn(){
+    this.getContinueBtn().click()
+  }
 
 }
 

@@ -1,14 +1,24 @@
 /// <reference types="Cypress" />
-
-
 class YourCartPage{
 
-    checkShoppingCartBadge(nrOfItems){
+  //locators
+  getShoppingPageTitle(){
+    return cy.get('.title')
+  }
 
-    cy.get('.shopping_cart_badge').should('have.text',nrOfItems)
-    cy.get('.shopping_cart_link').click()
-    cy.get('.title').should('have.text', 'Your Cart')
+  getCheckoutBtn(){
+    return cy.get('[data-test=checkout]')
+  }
 
+//*********************************************************************************
+
+  //actions
+  checkShoppingCartPage(){
+    this.getShoppingPageTitle().should('have.text', 'Your Cart')
+  }
+
+  clickCheckoutButton(){
+    this.getCheckoutBtn().click()
   }
 
 }

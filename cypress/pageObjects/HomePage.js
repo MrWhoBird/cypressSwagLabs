@@ -1,35 +1,49 @@
 /// <reference types="Cypress" />
-
-
 class HomePage{
 
-  selectProduct(data){
-    let nrOfItems = 0
-    data.forEach(productName => {
-      //cy.selectProduct(el)
-      cy.get('.inventory_item').each((el,ind) => {
-        el.text().includes(productName) ? cy.get('.btn').eq(ind).click() : true
-      })
-      nrOfItems++
-      // cy.readProductPrice(productName)
-    })
-    return nrOfItems
+  //locators
+  getPageTitle(){
+    return cy.get('.title')
   }
 
-  readProductPrice(data){
+  getInventoryItem(){
+    return cy.get('.inventory_item')
+  }
 
+  getAddToCartBtn(){
+    return cy.get('.btn')
+  }
+
+  getShoppingCartBadge(){
+    return cy.get('.shopping_cart_badge')
+  }
+
+  getShoppingCartBadgeLink(){
+    return cy.get('.shopping_cart_link')
+  }
+
+//*********************************************************************************
+
+  //actions
+  checkHomePage(){
+    this.getPageTitle().should('have.text', 'Products')
+  }
+
+  selectProducts(data){
     data.forEach(productName => {
-      cy.get('.inventory_item').each((el,ind) => {
-        el.text().includes(productName) ? cy.get('.inventory_item_price').eq(ind).then(x => {
-          let price = parseFloat(x.text().substring(1))
-          console.log(price,'price')
-          //sum = sum + price
-          cy.writeFile('draft.txt', String(price)+ ' ', { flag: 'a+' })
-          console.log('sum')}) : true
+      this.getInventoryItem().each((el,ind) => {
+        el.text().includes(productName) ? this.getAddToCartBtn().eq(ind).click() : true
       })
     })
   }
 
+  checkShoppingCartBadge(nrOfItems){
+    this.getShoppingCartBadge().should('have.text',nrOfItems)
+  }
+
+  clickShoppingCartBadgeLink(){
+    this.getShoppingCartBadgeLink().click()
+  }
 
 }
 

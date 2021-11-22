@@ -1,9 +1,14 @@
 {
-  "username" : "standard_user",
   "password" : "secret_sauce",
-  "wrongpassword" : "wrongpassword",
-  "wrongusername" : "wrongusername",
-  "productName" : ["Sauce Labs Onesie","Sauce Labs Fleece Jacket","Sauce Labs Bolt T-Shirt","Sauce Labs Backpack"],
+  "wrong_password" : "wrong_password",
+
+  "standard_user" : "standard_user",
+  "wrong_user" : "wrong_user",
+  "locked_out_user" : "locked_out_user",
+  "problem_user" : "problem_user",
+  "performance_glitch_user" : "performance_glitch_user",
+
+  "productName" : ["Sauce Labs Onesie","Sauce Labs Fleece Jacket","Sauce Labs Bolt T-Shirt"],
   "firstname" : "John",
   "lastname" : "Node",
   "postalcode" : "66-555"
